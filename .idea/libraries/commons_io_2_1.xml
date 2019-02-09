@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="commons-io-2.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/PureMVC_Java_MultiCore-1.0.8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/swixml.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/PureMVC_Java_MultiCore-1.0.8.jar!/" />
+    </SOURCES>
+  </library>
+</component>

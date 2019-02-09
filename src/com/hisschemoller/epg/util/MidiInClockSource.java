@@ -1,5 +1,5 @@
 /**
- * Copyright 2011 Wouter Hisschemšller
+ * Copyright 2011 Wouter Hisschemoller
  * 
  * This file is part of Euclidean Pattern Generator.
  * 

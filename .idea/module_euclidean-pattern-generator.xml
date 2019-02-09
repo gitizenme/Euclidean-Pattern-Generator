@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_euclidean-pattern-generator" default="compile.module.euclidean-pattern-generator">
+  <dirname property="module.euclidean-pattern-generator.basedir" file="${ant.file.module_euclidean-pattern-generator}"/>
+  
+  <property name="module.jdk.home.euclidean-pattern-generator" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.euclidean-pattern-generator" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.euclidean-pattern-generator" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.euclidean-pattern-generator" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="euclidean-pattern-generator.output.dir" value="${module.euclidean-pattern-generator.basedir}/../build/production/Euclidean-Pattern-Generator"/>
+  <property name="euclidean-pattern-generator.testoutput.dir" value="${module.euclidean-pattern-generator.basedir}/../build/test/Euclidean-Pattern-Generator"/>
+  
+  <path id="euclidean-pattern-generator.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="euclidean-pattern-generator.module.production.classpath">
+    <path refid="${module.jdk.classpath.euclidean-pattern-generator}"/>
+    <path refid="library.commons-io-2.1.classpath"/>
+    <path refid="library.commons-io:commons-io:2.1.classpath"/>
+    <path refid="library.oscp5.classpath"/>
+    <path refid="library.jdom.classpath"/>
+  </path>
+  
+  <path id="euclidean-pattern-generator.runtime.production.module.classpath">
+    <pathelement location="${euclidean-pattern-generator.output.dir}"/>
+    <path refid="library.commons-io-2.1.classpath"/>
+    <path refid="library.commons-io:commons-io:2.1.classpath"/>
+    <path refid="library.oscp5.classpath"/>
+    <path refid="library.jdom.classpath"/>
+  </path>
+  
+  <path id="euclidean-pattern-generator.module.classpath">
+    <path refid="${module.jdk.classpath.euclidean-pattern-generator}"/>
+    <pathelement location="${euclidean-pattern-generator.output.dir}"/>
+    <path refid="library.commons-io-2.1.classpath"/>
+    <path refid="library.commons-io:commons-io:2.1.classpath"/>
+    <path refid="library.oscp5.classpath"/>
+    <path refid="library.jdom.classpath"/>
+  </path>
+  
+  <path id="euclidean-pattern-generator.runtime.module.classpath">
+    <pathelement location="${euclidean-pattern-generator.testoutput.dir}"/>
+    <pathelement location="${euclidean-pattern-generator.output.dir}"/>
+    <path refid="library.commons-io-2.1.classpath"/>
+    <path refid="library.commons-io:commons-io:2.1.classpath"/>
+    <path refid="library.oscp5.classpath"/>
+    <path refid="library.jdom.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.euclidean-pattern-generator">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.euclidean-pattern-generator">
+    <patternset refid="excluded.from.module.euclidean-pattern-generator"/>
+  </patternset>
+  
+  <path id="euclidean-pattern-generator.module.sourcepath">
+    <dirset dir="${module.euclidean-pattern-generator.basedir}/../../Euclidean-Pattern-Generator">
+      <include name="src"/>
+      <include name="bin/res"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.euclidean-pattern-generator" depends="compile.module.euclidean-pattern-generator.production,compile.module.euclidean-pattern-generator.tests" description="Compile module Euclidean-Pattern-Generator"/>
+  
+  <target name="compile.module.euclidean-pattern-generator.production" depends="register.custom.compilers" description="Compile module Euclidean-Pattern-Generator; production classes">
+    <mkdir dir="${euclidean-pattern-generator.output.dir}"/>
+    <javac2 destdir="${euclidean-pattern-generator.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.euclidean-pattern-generator}/javac">
+      <compilerarg line="${compiler.args.euclidean-pattern-generator}"/>
+      <bootclasspath refid="euclidean-pattern-generator.module.bootclasspath"/>
+      <classpath refid="euclidean-pattern-generator.module.production.classpath"/>
+      <src refid="euclidean-pattern-generator.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.euclidean-pattern-generator"/>
+    </javac2>
+    
+    <copy todir="${euclidean-pattern-generator.output.dir}">
+      <fileset dir="${module.euclidean-pattern-generator.basedir}/../src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.euclidean-pattern-generator.basedir}/../bin/res">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.euclidean-pattern-generator.tests" depends="register.custom.compilers,compile.module.euclidean-pattern-generator.production" description="compile module Euclidean-Pattern-Generator; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.euclidean-pattern-generator" description="cleanup module">
+    <delete dir="${euclidean-pattern-generator.output.dir}"/>
+    <delete dir="${euclidean-pattern-generator.testoutput.dir}"/>
+  </target>
+</project>
